@@ -7,10 +7,8 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("undotree").setup()
+      vim.keymap.set("n", "<leader>ru", "<cmd>lua require('undotree').toggle()<cr>", { desc = "Toggle undotree" })
     end,
-    keys = {
-      { "<leader>ru", "<cmd>lua require('undotree').toggle()<cr>" },
-    },
   },
   {
     "epwalsh/obsidian.nvim",
@@ -50,9 +48,29 @@ return {
           open_app_foreground = false,
         })
 
-        vim.keymap.set("n", "<leader>oq", ":ObsidianQuickSwitch<CR>")
+        vim.keymap.set("n", "<leader>oq", ":ObsidianQuickSwitch<CR>", { desc = "Open quick switch" })
         vim.opt.conceallevel = 1
       end
     end,
+  },
+  {
+    "lyokha/vim-xkbswitch",
+  },
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim", -- required by telescope
+      "MunifTanjim/nui.nvim",
+
+      -- optional
+      "nvim-treesitter/nvim-treesitter",
+      "rcarriga/nvim-notify",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      lang = "python3",
+    },
   },
 }

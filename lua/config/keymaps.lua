@@ -9,7 +9,7 @@ map("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
 map("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
 map("i", "<C-c>", "<Esc>")
--- map("n", "<C-f>", '<cmd>!tmux split-window -v -c "vim ${path_under_cursor}"<CR>', { desc = "new tmux window" })
+map("n", "<leader>t", '<cmd>!tmux split-window -v -c "vim ${path_under_cursor}"<CR>', { desc = "New tmux window" })
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
@@ -24,3 +24,10 @@ map("n", "N", "Nzzzv")
 
 -- greatest remap ever
 map("x", "<leader>p", [["_dP]])
+
+local wk = require("which-key")
+wk.register({ ["<leader>"] = {
+  o = {
+    name = "obsidian",
+  },
+} })
