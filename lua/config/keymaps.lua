@@ -26,8 +26,15 @@ map("n", "N", "Nzzzv")
 map("x", "<leader>p", [["_dP]])
 
 local wk = require("which-key")
-wk.register({ ["<leader>"] = {
-  o = {
-    name = "obsidian",
+wk.register({
+  ["<leader>"] = {
+    o = {
+      name = "obsidian",
+    },
   },
-} })
+  ["<localleader>"] = {
+    r = {
+      name = "request",
+    },
+  },
+})
