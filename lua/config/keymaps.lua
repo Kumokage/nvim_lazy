@@ -9,7 +9,7 @@ map("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
 map("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
 map("i", "<C-c>", "<Esc>")
-map("n", "<leader>t", '<cmd>!tmux split-window -v -c "vim ${path_under_cursor}"<CR>', { desc = "New tmux window" })
+map("n", "<leader>wt", '<cmd>!tmux split-window -v -c "vim ${path_under_cursor}"<CR>', { desc = "New tmux window" })
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
