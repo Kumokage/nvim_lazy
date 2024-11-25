@@ -30,7 +30,7 @@ return {
             },
           },
           daily_notes = {
-            folder = "Journal",
+            folder = "06 - Daily",
             date_format = "%Y-%m-%d",
             -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
             template = "Daily note.md",
@@ -39,7 +39,7 @@ return {
             return title
           end,
           templates = {
-            subdir = "Templates",
+            subdir = "99 - META/Templates",
             date_format = "%Y-%m-%d",
             time_format = "%H:%M",
             -- A map for custom variables, the key should be the variable and the value a function
