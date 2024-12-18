@@ -45,6 +45,7 @@ vim.opt.updatetime = 50
 vim.opt.textwidth = 120
 vim.opt.colorcolumn = "140"
 
+vim.g.snacks_animate = false
 vim.cmd(
   "set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 )
