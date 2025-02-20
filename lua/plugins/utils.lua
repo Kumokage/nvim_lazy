@@ -18,7 +18,7 @@ return {
       if string.find(string.lower(vim.loop.os_uname().release), "wsl") then
         obsidian_path = "/mnt/c/Users/AGlushko2/Zettelkasten"
       elseif string.find(string.lower(vim.loop.os_uname().sysname), "darwin") then
-        obsidian_path = "/Users/alexglushko/Library/Mobile Documents/iCloud~md~obsidian/Documents/Zettelkasten"
+        obsidian_path = "/Users/alexglushko/Zettelkasten"
       end
 
       if obsidian_path ~= Nil then
