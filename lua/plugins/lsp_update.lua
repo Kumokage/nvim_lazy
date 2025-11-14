@@ -34,7 +34,7 @@ return {
           prepare_output = require("CopilotChat.config.providers").copilot.prepare_output,
 
           get_url = function()
-            return "https://ai.slb-ds.ru/v1/chat/completions"
+            return "https://ai.slb-ds.ru/chat/completions"
           end,
 
           get_headers = function()
@@ -46,7 +46,7 @@ return {
           end,
 
           get_models = function(headers)
-            local response, err = require("CopilotChat.utils").curl_get("https://ai.slb-ds.ru/v1/models", {
+            local response, err = require("CopilotChat.utils").curl_get("https://ai.slb-ds.ru/models", {
               headers = headers,
               json_response = true,
             })
