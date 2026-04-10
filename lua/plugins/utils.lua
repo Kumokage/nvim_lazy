@@ -50,6 +50,7 @@ return {
         })
 
         vim.keymap.set("n", "<leader>oq", ":ObsidianQuickSwitch<CR>", { desc = "Open quick switch" })
+        vim.keymap.set("n", "<leader>oO", ":ObsidianOpen<CR>", { desc = "Open note in obsidian app" })
         vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>", { desc = "Follow link" })
 
         vim.keymap.set("n", "<leader>odn", ":ObsidianToday<CR>", { desc = "Open today note" })
