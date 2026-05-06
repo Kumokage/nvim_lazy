@@ -15,7 +15,7 @@ table.insert(dap.configurations.python, {
   mode = "remote",
   cwd = vim.fn.getcwd(),
   pathMappings = {
-    { localRoot = vim.fn.getcwd(), remoteRoot = "/server" },
+    { localRoot = vim.fn.getcwd(), remoteRoot = "/app" },
   },
   justMyCode = false,
 })
