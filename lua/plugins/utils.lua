@@ -15,11 +15,7 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       local obsidian_path = Nil
-      if string.find(string.lower(vim.loop.os_uname().release), "wsl") then
-        obsidian_path = "/mnt/c/Users/AGlushko2/Zettelkasten"
-      elseif string.find(string.lower(vim.loop.os_uname().sysname), "darwin") then
-        obsidian_path = "/Users/alexglushko/Zettelkasten"
-      end
+      obsidian_path = "~/Zettelkasten"
 
       if obsidian_path ~= Nil then
         require("obsidian").setup({
