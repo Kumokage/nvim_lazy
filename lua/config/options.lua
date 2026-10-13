@@ -11,7 +11,6 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- search settings
@@ -35,12 +34,11 @@ vim.opt.splitright = true -- split vertical window to the right
 vim.opt.splitbelow = true -- split horizontal window to the bottom
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 200
 
 vim.opt.textwidth = 120
-vim.opt.colorcolumn = "140"
+vim.opt.colorcolumn = "+1"
 
 vim.g.snacks_animate = false

@@ -24,6 +24,3 @@ map("n", "N", "Nzzzv")
 
 -- greatest remap ever
 -- map("x", "<leader>p", [["_dP]])
-
-local wk = require("which-key")
-wk.add({ { "<leader>o", group = "obsidian" } })

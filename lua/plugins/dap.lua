@@ -6,7 +6,7 @@ return {
       table.insert(require("dap").configurations.python, {
         type = "python",
         request = "attach",
-        name = "attach to litstar in docker",
+        name = "attach to litestar in docker",
         connect = {
           host = "127.0.0.1",
           port = 5678,

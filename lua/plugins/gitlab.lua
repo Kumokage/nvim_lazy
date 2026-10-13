@@ -1,9 +1,18 @@
+-- origin/HEAD points at the remote default branch (main or master)
+local function diff_vs_default_branch()
+  local ref = vim.trim(vim.fn.system({ "git", "rev-parse", "--abbrev-ref", "origin/HEAD" }))
+  if vim.v.shell_error ~= 0 or ref == "" then
+    ref = "origin/master"
+  end
+  vim.cmd("DiffviewOpen " .. ref .. "...HEAD")
+end
+
 return {
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
-      { "<leader>gv", "<cmd>DiffviewOpen origin/master...HEAD<cr>", desc = "Diff vs master" },
+      { "<leader>gv", diff_vs_default_branch, desc = "Diff vs default branch" },
       { "<leader>gV", "<cmd>DiffviewClose<cr>", desc = "Close diffview" },
     },
   },
