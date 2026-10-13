@@ -1,5 +1,26 @@
 return {
   {
+    "mfussenegger/nvim-dap-python",
+    config = function()
+      require("dap-python").setup("debugpy-adapter")
+      table.insert(require("dap").configurations.python, {
+        type = "python",
+        request = "attach",
+        name = "attach to litstar in docker",
+        connect = {
+          host = "127.0.0.1",
+          port = 5678,
+        },
+        mode = "remote",
+        cwd = "${workspaceFolder}",
+        pathMappings = {
+          { localRoot = "${workspaceFolder}", remoteRoot = "/server" },
+        },
+        justMyCode = false,
+      })
+    end,
+  },
+  {
     "rcarriga/nvim-dap-ui",
     dependencies = { "nvim-neotest/nvim-nio" },
   -- stylua: ignore

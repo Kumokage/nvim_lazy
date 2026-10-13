@@ -7,7 +7,9 @@ map("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
 map("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
 
 map("i", "<C-c>", "<Esc>")
-map("n", "<leader>wt", '<cmd>!tmux split-window -v -c "vim ${path_under_cursor}"<CR>', { desc = "New tmux window" })
+map("n", "<leader>wt", function()
+  vim.fn.system({ "tmux", "split-window", "-v", "nvim " .. vim.fn.shellescape(vim.fn.expand("<cfile>")) })
+end, { desc = "Open file under cursor in tmux split" })
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")

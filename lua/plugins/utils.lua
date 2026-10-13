@@ -11,19 +11,42 @@ return {
     end,
   },
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    ft = "markdown",
+    cmd = "Obsidian",
+    -- stylua: ignore
+    keys = {
+      { "<leader>oq", "<cmd>Obsidian quick_switch<cr>", desc = "Open quick switch" },
+      { "<leader>oO", "<cmd>Obsidian open<cr>", desc = "Open note in obsidian app" },
+      { "<leader>of", "<cmd>Obsidian follow_link<cr>", desc = "Follow link" },
+      { "<leader>odn", "<cmd>Obsidian today<cr>", desc = "Open today note" },
+      { "<leader>odt", "<cmd>Obsidian tomorrow<cr>", desc = "Open tomorrow note" },
+      { "<leader>ody", "<cmd>Obsidian yesterday<cr>", desc = "Open yesterday note" },
+      { "<leader>otc", "<cmd>Obsidian toggle_checkbox<cr>", desc = "Toggle checkbox" },
+      { "<leader>os", "<cmd>Obsidian search<cr>", desc = "Open search in notes" },
+      { "<leader>ots", "<cmd>Obsidian tags<cr>", desc = "Open search in tags" },
+      { "<leader>or", "<cmd>Obsidian rename<cr>", desc = "Rename note" },
+      { "<leader>oc", "<cmd>Obsidian toc<cr>", desc = "Open table of content" },
+      { "<leader>oit", "<cmd>Obsidian template<cr>", desc = "Open insert template" },
+      { "<leader>ont", "<cmd>Obsidian new_from_template<cr>", desc = "New note from template" },
+      { "<leader>obl", "<cmd>Obsidian backlinks<cr>", desc = "Search back links" },
+      { "<leader>opi", "<cmd>Obsidian paste_img<cr>", desc = "Obsidian paste image" },
+      { "<leader>oal", ":Obsidian link<cr>", mode = "v", desc = "Add link" },
+      { "<leader>oln", ":Obsidian link_new<cr>", mode = "v", desc = "New link from visual" },
+      { "<leader>oen", ":Obsidian extract_note<cr>", mode = "v", desc = "Extract text to new note" },
+    },
     config = function()
-      local obsidian_path = Nil
-      if string.find(string.lower(vim.loop.os_uname().release), "wsl") then
+      local obsidian_path = nil
+      if string.find(string.lower(vim.uv.os_uname().release), "wsl") then
         obsidian_path = "/mnt/c/Users/AGlushko2/Zettelkasten"
-      elseif string.find(string.lower(vim.loop.os_uname().sysname), "darwin") then
+      elseif string.find(string.lower(vim.uv.os_uname().sysname), "darwin") then
         obsidian_path = "/Users/alexglushko/Zettelkasten"
       end
 
-      if obsidian_path ~= Nil then
+      if obsidian_path ~= nil then
         require("obsidian").setup({
-          mappings = {},
+          legacy_commands = false,
           workspaces = {
             {
               name = "personal",
@@ -46,34 +69,13 @@ return {
             -- A map for custom variables, the key should be the variable and the value a function
             substitutions = {},
           },
-          open_app_foreground = false,
+          open = {
+            -- keep the Obsidian app in the background (replaces open_app_foreground = false)
+            func = function(uri)
+              vim.ui.open(uri, { cmd = { "open", "-g" } })
+            end,
+          },
         })
-
-        vim.keymap.set("n", "<leader>oq", ":ObsidianQuickSwitch<CR>", { desc = "Open quick switch" })
-        vim.keymap.set("n", "<leader>oO", ":ObsidianOpen<CR>", { desc = "Open note in obsidian app" })
-        vim.keymap.set("n", "<leader>of", ":ObsidianFollowLink<CR>", { desc = "Follow link" })
-
-        vim.keymap.set("n", "<leader>odn", ":ObsidianToday<CR>", { desc = "Open today note" })
-        vim.keymap.set("n", "<leader>odt", ":ObsidianTomorrow<CR>", { desc = "Open tomorrow note" })
-        vim.keymap.set("n", "<leader>ody", ":ObsidianYesterday<CR>", { desc = "Open yestardayt note" })
-
-        vim.keymap.set("n", "<leader>otc", ":ObsidianToggleCheckbox<CR>", { desc = "Toggle checkbox" })
-
-        vim.keymap.set("n", "<leader>os", ":ObsidianSearch<CR>", { desc = "Open search in notes" })
-        vim.keymap.set("n", "<leader>ots", ":ObsidianTags<CR>", { desc = "Open search in tags" })
-
-        vim.keymap.set("n", "<leader>or", ":ObsidianRename<CR>", { desc = "Rename note" })
-        vim.keymap.set("n", "<leader>oc", ":ObsidianTOC<CR>", { desc = "Open table of content" })
-
-        vim.keymap.set("n", "<leader>oit", ":ObsidianTemplate<CR>", { desc = "Open insert template" })
-        vim.keymap.set("n", "<leader>ont", ":ObsidianNewFromTemplate<CR>", { desc = "New note from template" })
-        vim.keymap.set("n", "<leader>obl", ":ObsidianBacklinks<CR>", { desc = "Search back links" })
-
-        vim.keymap.set("n", "<leader>opi", ":ObsidianPasteImg<CR>", { desc = "Obsidian paste image" })
-
-        vim.keymap.set("v", "<leader>oal", ":ObsidianLink<CR>", { desc = "Add link" })
-        vim.keymap.set("v", "<leader>oln", ":ObsidianLinkNew<CR>", { desc = "New link from visual" })
-        vim.keymap.set("v", "<leader>oen", ":ObsidianExtractNote<CR>", { desc = "Extract text to new note" })
         vim.opt.conceallevel = 1
       end
     end,
@@ -87,6 +89,9 @@ return {
   {
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
+    cmd = "Leet",
+    -- also load when started as `nvim leetcode.nvim`
+    lazy = "leetcode.nvim" ~= vim.fn.argv(0, -1),
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim", -- required by telescope
