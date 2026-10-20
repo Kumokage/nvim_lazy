@@ -1,12 +1,14 @@
 local uname = vim.uv.os_uname()
 local is_mac = uname.sysname:lower():find("darwin") ~= nil
-local is_wsl = uname.release:lower():find("wsl") ~= nil
 
+-- first existing vault wins; ~/Zettelkasten is a symlink to the Windows vault on WSL
 local obsidian_path = nil
-if is_wsl then
-  obsidian_path = "/mnt/c/Users/AGlushko2/Zettelkasten"
-elseif is_mac then
-  obsidian_path = "/Users/alexglushko/Zettelkasten"
+for _, path in ipairs({ "~/Zettelkasten", "/Users/alexglushko/Zettelkasten" }) do
+  path = vim.fn.expand(path)
+  if vim.fn.isdirectory(path) == 1 then
+    obsidian_path = path
+    break
+  end
 end
 
 return {
@@ -77,7 +79,7 @@ return {
         },
       },
       daily_notes = {
-        folder = "06 - Daily",
+        folder = "06 - DAILY",
         date_format = "%Y-%m-%d",
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
         template = "Daily note.md",
